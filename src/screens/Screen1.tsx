@@ -1,0 +1,38 @@
+import React from 'react';
+import { StackScreenProps } from '@react-navigation/stack';
+import { Button, Image, Text, TouchableOpacity, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { PRIMARY_COLOR } from '../commons/contans';
+import { TitleConponent } from './components/TitleConponent';
+import { BodyComponents } from './components/BodyComponents';
+import { styles } from '../../Theme/appTheme';
+
+
+interface Props extends StackScreenProps<any, any> {}
+
+export const Screen1 = ({ navigation }: Props) => {
+  return (
+    <View>
+
+    <StatusBar backgroundColor={PRIMARY_COLOR}/>
+    <TitleConponent title='BIENVENIDO'/>
+    <BodyComponents>
+
+      
+    <Image
+        source={{ uri: 'https://frontdeskhelpers.com/wp-content/uploads/2020/04/app-dev.png' }}
+        style={styles.image}
+      />
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Screen2')}>
+      <Text style={styles.buttonText}>Acceder</Text>
+      </TouchableOpacity>
+    </BodyComponents>
+
+
+
+
+    
+    </View>
+    
+  );
+};

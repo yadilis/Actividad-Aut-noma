@@ -1,0 +1,19 @@
+import React from 'react'
+import { Text, useWindowDimensions } from 'react-native'
+import { styles } from '../../../Theme/appTheme';
+
+interface Props{
+    title:string;
+
+
+}
+
+export const TitleConponent = ({title}:Props) => {
+    const {height} =  useWindowDimensions();
+  return (
+    <Text style={{
+        ...styles.global,
+        height: height *0.12
+    }}>{title}</Text>
+  )
+}
