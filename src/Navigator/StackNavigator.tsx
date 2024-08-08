@@ -1,9 +1,10 @@
 // En StackNavigator.js
 
 import { createStackNavigator } from '@react-navigation/stack';
+import { PRIMARY_COLOR } from '../commons/contans';
 import { Screen1 } from '../screens/Screen1';
 import { Screen2 } from '../screens/Screen2';
-import { PRIMARY_COLOR } from '../commons/contans';
+
 
 
 const Stack = createStackNavigator();

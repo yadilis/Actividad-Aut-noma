@@ -1,29 +1,65 @@
-import React from 'react'
-import { Image, StatusBar, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput, StatusBar } from 'react-native';
+import { PRIMARY_COLOR } from '../commons/contans';
 import { TitleConponent } from './components/TitleConponent';
 import { BodyComponents } from './components/BodyComponents';
 import { styles } from '../../Theme/appTheme';
-import { StackScreenProps } from '@react-navigation/stack';
-import { PRIMARY_COLOR } from '../commons/contans';
 
 
+export const Screen2 = () => {
+  const [numero1, setNumero1] = useState('');
+  const [numero2, setNumero2] = useState('');
+  const [resultado, setResultado] = useState('');
 
+  const handleDividir = () => {
+    const num1 = parseFloat(numero1);
+    const num2 = parseFloat(numero2);
 
-interface Props extends StackScreenProps<any, any> {}
+    if (isNaN(num1) || isNaN(num2)) {
+      setResultado('Por favor ingresa números válidos');
+    } else if (num1 === 0 && num2 === 0) {
+      setResultado('INDETERMINACIÓN');
+    } else if (num2 === 0) {
+      setResultado('NO EXISTE DIVISIÓN PARA CERO');
+    } else {
+      const resultadoDivision = num1 / num2;
+      setResultado(`Resultado: ${resultadoDivision}`);
+    }
+  };
 
-export const Screen2 = ({ navigation }: Props) => {
   return (
-    <View style={styles.container}>
+    <View>
       <StatusBar backgroundColor={PRIMARY_COLOR} />
-      <TitleConponent title='Formulario' />
+      <TitleConponent title='Calcular' />
+
       <BodyComponents>
-        
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Screen2')}>
+        <Text style={styles.titleHeaderBody}>FORMULARIO</Text>
+
+        <View style={styles.contentInput}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Número 1"
+            keyboardType="numeric"
+            value={numero1}
+            onChangeText={setNumero1}
+          />
+          <TextInput
+            style={styles.inputText}
+            placeholder="Número 2"
+            keyboardType="numeric"
+            value={numero2}
+            onChangeText={setNumero2}
+          />
+        </View>
+
+        <TouchableOpacity style={styles.button} onPress={handleDividir}>
           <Text style={styles.buttonText}>Dividir</Text>
         </TouchableOpacity>
 
+        {resultado ? (
+          <Text style={styles.buttonText}>{resultado}</Text>
+        ) : null}
       </BodyComponents>
     </View>
   );
-}
-
+};

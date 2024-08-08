@@ -1,0 +1,25 @@
+// components/InputComponent.tsx
+import React from 'react';
+import { TextInput, StyleSheet } from 'react-native';
+import { styles } from '../../../Theme/appTheme';
+
+interface Props {
+    placeholder: string;
+    value: string;
+    onChangeText: (text: string) => void;
+}
+
+export const InputComponent = ({ placeholder, value, onChangeText }:Props) => {
+    return (
+        <TextInput
+            placeholder={placeholder}
+            keyboardType="numeric"
+            value={value}
+            onChangeText={onChangeText}
+            style={styles.inputText}
+        />
+    );
+};
+
+
+
